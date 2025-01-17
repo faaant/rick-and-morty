@@ -7,11 +7,19 @@ on:
     types:
       - completed
 jobs:
-  deploy:
+  build_deploy:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20.12.2
+          cache: 'npm'
+
+      - name: Build application
+        run: npm run build
+
       - name: Build & Deploy Worker
         uses: cloudflare/wrangler-action@v3
         with:
