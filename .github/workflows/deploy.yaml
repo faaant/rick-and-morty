@@ -1,4 +1,4 @@
-name: Deploy Worker
+name: Deploy Pages
 on:
   workflow_run:
     workflows: ['Code check']
@@ -26,7 +26,7 @@ jobs:
       - name: Build application
         run: npm run build
 
-      - name: Build & Deploy Worker
+      - name: Deploy Pages
         uses: cloudflare/wrangler-action@v3
         with:
           command: pages deploy
