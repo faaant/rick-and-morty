@@ -17,6 +17,13 @@ jobs:
           node-version: 20.12.2
           cache: 'npm'
 
+      - name: Cached dependencies
+        id: cache
+        uses: actions/cache@v4
+        with:
+          path: ./node_modules
+          key: modules-${{ hashFiles('package-lock.json') }}
+
       - name: Build application
         run: npm run build
 
