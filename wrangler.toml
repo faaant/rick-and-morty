@@ -1,2 +1,5 @@
 pages_build_output_dir = ".svelte-kit/cloudflare"
 name = "rick-and-morty"
+
+[vars]
+PUBLIC_API_URL = "https://rickandmortyapi.com/graphql"
