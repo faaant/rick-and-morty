@@ -10,7 +10,7 @@
   import ErrorAlert from '$lib/components/ErrorAlert/index.svelte';
   import List from '$lib/components/List/index.svelte';
   import CharactersListItem from '$lib/components/List/CharacterListItem.svelte';
-  import { prepareCharacters } from '$lib/utils/prepareCharacters';
+  import { getUniqueCharacters } from '$lib/utils/prepareCharacters';
   import { prepareEpisodes } from '$lib/utils/prepareEpisodes';
   import EpisodeListItem from '$lib/components/List/EpisodeListItem.svelte';
 
@@ -21,7 +21,11 @@
   });
 
   const episodes = $derived(prepareEpisodes($season.data?.episodes?.results ?? []));
-  const characters = $derived(prepareCharacters($season.data?.episodes?.results ?? []));
+  const characters = $derived(
+    getUniqueCharacters(
+      $season.data?.episodes?.results?.flatMap((episode) => episode?.characters ?? []) ?? []
+    )
+  );
 </script>
 
 <section>
@@ -48,7 +52,7 @@
 
 <style>
   section {
-    padding: 1rem 2rem;
+    padding: 2rem;
   }
 
   h3 {

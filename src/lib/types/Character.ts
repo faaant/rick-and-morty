@@ -10,7 +10,7 @@ export interface Character extends ListCharacter {
   status?: CharacterStatus;
   species?: string | null | undefined;
   gender?: string | null | undefined;
-  episode: ListEpisode[];
+  episode?: ListEpisode[];
 }
 
 export const characterStatus = {

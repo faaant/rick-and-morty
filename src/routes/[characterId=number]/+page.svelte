@@ -48,7 +48,7 @@
 
 <style>
   section {
-    padding: 1rem 2rem;
+    padding: 2rem;
     height: 100%;
   }
 </style>

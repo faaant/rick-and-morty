@@ -2,15 +2,14 @@
   import type { ListEpisode } from '$lib/types/ListEpisode';
 
   interface Props {
-    index: number;
     item: ListEpisode;
   }
 
-  const { index, item }: Props = $props();
+  const { item }: Props = $props();
 </script>
 
 <a data-tooltip={item.name} href={item.link}>
-  {index + 1}
+  {item.id}
 </a>
 
 <style>

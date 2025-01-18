@@ -6,7 +6,7 @@
   type T = $$Generic<ListCharacter | ListEpisode>;
 
   interface Props {
-    ItemComponent: Component<{ item: T; index: number }>;
+    ItemComponent: Component<{ item: T }>;
     items: T[];
     title: string;
   }
@@ -19,8 +19,8 @@
 
   {#if items.length}
     <div>
-      {#each items as item, index}
-        <ItemComponent {index} {item}></ItemComponent>
+      {#each items as item}
+        <ItemComponent {item}></ItemComponent>
       {/each}
     </div>
   {:else}

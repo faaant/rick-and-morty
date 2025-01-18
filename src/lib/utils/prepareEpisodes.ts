@@ -1,14 +1,9 @@
 import type { InputEpisode } from '$lib/types/InputEpisode';
 import type { ListEpisode } from '$lib/types/ListEpisode';
 
-const getSeason = (episode: string) => {
+export const getSeason = (episode: string) => {
   const season = episode.toLowerCase().match(/^s0\d/g)?.[0];
-
-  if (!season) {
-    throw new Error('Can not find existing season!');
-  }
-
-  return season;
+  return season ?? 'unknown';
 };
 
 export const prepareEpisodes = (episodes: InputEpisode[] = []): ListEpisode[] => {

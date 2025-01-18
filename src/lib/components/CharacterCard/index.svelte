@@ -8,11 +8,10 @@
 </script>
 
 <script lang="ts">
-  import { type Character, type ListCharacter } from '$lib/types/Character';
+  import { type Character } from '$lib/types/Character';
 
-  type OptionalFields = Partial<Omit<Character, keyof ListCharacter>>;
   interface Props {
-    character: ListCharacter & OptionalFields;
+    character: Character;
   }
 
   const { character }: Props = $props();
