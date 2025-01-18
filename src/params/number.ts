@@ -1,6 +1,6 @@
 import type { ParamMatcher } from '@sveltejs/kit';
 
 export const match = ((param: string) => {
-  const characterRegexp = /^\d+$/;
-  return characterRegexp.test(param);
+  const numberRegexp = /^\d+$/;
+  return numberRegexp.test(param);
 }) satisfies ParamMatcher;

@@ -1,9 +1,9 @@
 <script lang="ts">
-  import type { ListCharacter } from '$lib/types/Character';
-  import type { ListEpisode } from '$lib/types/ListEpisode';
+  import type { Character } from '$lib/types/Character';
+  import type { Episode } from '$lib/types/Episode';
   import type { Component } from 'svelte';
 
-  type T = $$Generic<ListCharacter | ListEpisode>;
+  type T = $$Generic<Character | Episode>;
 
   interface Props {
     ItemComponent: Component<{ item: T }>;

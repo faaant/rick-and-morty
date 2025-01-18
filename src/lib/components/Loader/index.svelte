@@ -1,5 +1,5 @@
 <section>
-  <span aria-busy="true">Loading season...</span>
+  <span aria-busy="true">Loading...</span>
 </section>
 
 <style>

@@ -1,9 +1,9 @@
 <script lang="ts">
   import CharacterCard from '$lib/components/CharacterCard/index.svelte';
-  import type { ListCharacter } from '$lib/types/Character';
+  import type { Character } from '$lib/types/Character';
 
   interface Props {
-    item: ListCharacter;
+    item: Character;
   }
 
   const { item }: Props = $props();

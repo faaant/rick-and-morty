@@ -1,8 +1,8 @@
 <script lang="ts">
-  import type { ListEpisode } from '$lib/types/ListEpisode';
+  import type { Episode } from '$lib/types/Episode';
 
   interface Props {
-    item: ListEpisode;
+    item: Episode;
   }
 
   const { item }: Props = $props();

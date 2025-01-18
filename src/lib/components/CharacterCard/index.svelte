@@ -18,7 +18,7 @@
 </script>
 
 <article>
-  {#if !!character.species}
+  {#if character.species}
     <header>
       {character.species} /
       {character.gender}

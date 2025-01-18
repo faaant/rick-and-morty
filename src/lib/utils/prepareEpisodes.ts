@@ -1,12 +1,12 @@
-import type { InputEpisode } from '$lib/types/InputEpisode';
-import type { ListEpisode } from '$lib/types/ListEpisode';
+import type { ResponseEpisode } from '$lib/types/Episode';
+import type { Episode } from '$lib/types/Episode';
 
 export const getSeason = (episode: string) => {
   const season = episode.toLowerCase().match(/^s0\d/g)?.[0];
   return season ?? 'unknown';
 };
 
-export const prepareEpisodes = (episodes: InputEpisode[] = []): ListEpisode[] => {
+export const prepareEpisodes = (episodes: ResponseEpisode[] = []): Episode[] => {
   return episodes.reduce((acc, episode) => {
     const season = getSeason(episode?.episode ?? '');
     if (episode) {
@@ -18,5 +18,5 @@ export const prepareEpisodes = (episodes: InputEpisode[] = []): ListEpisode[] =>
     }
 
     return acc;
-  }, [] as ListEpisode[]);
+  }, [] as Episode[]);
 };

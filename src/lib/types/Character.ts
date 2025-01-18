@@ -1,16 +1,16 @@
-import type { ListEpisode } from './ListEpisode';
+import type { GetCharacterQuery } from '$lib/graphql/query/GetCharacter';
+import type { Episode } from './Episode';
 
-export interface ListCharacter {
+export type ResponseCharacter = Partial<GetCharacterQuery['character']>;
+
+export interface Character {
   id: string;
   name: string;
   image: string;
-}
-
-export interface Character extends ListCharacter {
   status?: CharacterStatus;
   species?: string | null | undefined;
   gender?: string | null | undefined;
-  episode?: ListEpisode[];
+  episode: Episode[];
 }
 
 export const characterStatus = {
