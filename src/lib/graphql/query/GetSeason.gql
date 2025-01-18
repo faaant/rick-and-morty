@@ -3,6 +3,7 @@ query GetSeason($season: String!) {
     results {
       id
       name
+      episode
       characters {
         id
         name

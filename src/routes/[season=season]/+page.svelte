@@ -10,7 +10,8 @@
   import ErrorAlert from '$lib/components/ErrorAlert/index.svelte';
   import List from '$lib/components/List/index.svelte';
   import CharactersListItem from '$lib/components/List/CharacterListItem.svelte';
-  import { prepareCharacters, prepareEpisodes } from '$lib/utils/season';
+  import { prepareCharacters } from '$lib/utils/prepareCharacters';
+  import { prepareEpisodes } from '$lib/utils/prepareEpisodes';
   import EpisodeListItem from '$lib/components/List/EpisodeListItem.svelte';
 
   const season = queryStore<GetSeasonQuery, GetSeasonQueryVariables>({
@@ -19,9 +20,7 @@
     variables: { season: page.params.season ?? '' }
   });
 
-  const episodes = $derived(
-    prepareEpisodes($season.data?.episodes?.results ?? [], page.params.season)
-  );
+  const episodes = $derived(prepareEpisodes($season.data?.episodes?.results ?? []));
   const characters = $derived(prepareCharacters($season.data?.episodes?.results ?? []));
 </script>
 
@@ -38,7 +37,12 @@
     />
   {:else}
     <List ItemComponent={EpisodeListItem} items={episodes} title="Episodes:" />
-    <List ItemComponent={CharactersListItem} items={characters} title="Characters:" />
+    <List
+      ItemComponent={CharactersListItem}
+      items={characters}
+      title="Characters:"
+      --justify-content="space-around"
+    />
   {/if}
 </section>
 

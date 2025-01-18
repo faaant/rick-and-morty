@@ -1,5 +1,6 @@
 <script lang="ts">
-  import type { ListCharacter } from '$lib/types/ListCharacter';
+  import CharacterCard from '$lib/components/CharacterCard/index.svelte';
+  import type { ListCharacter } from '$lib/types/Character';
 
   interface Props {
     item: ListCharacter;
@@ -9,27 +10,11 @@
 </script>
 
 <a href="/{item.id}">
-  <article>
-    <figure>
-      <img alt="{item.name} image" src={item.image} />
-      <figcaption>
-        {item.name}
-      </figcaption>
-    </figure>
-  </article>
+  <CharacterCard character={item} />
 </a>
 
 <style>
   a {
     text-decoration: none;
-  }
-
-  article {
-    background-color: var(--pico-color-indigo-50);
-    height: 100%;
-  }
-
-  figure {
-    width: 150px;
   }
 </style>

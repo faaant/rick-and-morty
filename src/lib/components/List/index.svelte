@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { ListCharacter } from '$lib/types/ListCharacter';
+  import type { ListCharacter } from '$lib/types/Character';
   import type { ListEpisode } from '$lib/types/ListEpisode';
   import type { Component } from 'svelte';
 
@@ -47,6 +47,6 @@
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: var(--justify-content, 'unset');
   }
 </style>
