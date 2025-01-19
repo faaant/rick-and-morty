@@ -4,7 +4,7 @@
 
 <style>
   footer {
-    height: 10rem;
+    min-height: 10rem;
     background-color: var(--pico-color-slate-700);
     color: var(--pico-color-grey-50);
     padding: 1rem;

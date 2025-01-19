@@ -11,7 +11,7 @@
   header {
     display: flex;
     align-items: center;
-    height: 4rem;
+    min-height: 4rem;
     background-color: var(--pico-color-slate-150);
     box-shadow: var(--pico-box-shadow);
     position: sticky;

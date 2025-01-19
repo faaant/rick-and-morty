@@ -31,9 +31,7 @@
 </script>
 
 <section>
-  {#if season !== page.params.season}
-    <h1>Episode not found</h1>
-  {:else if $episodeResponse.fetching}
+  {#if $episodeResponse.fetching}
     <div style:height="500px">
       <Loader />
     </div>
@@ -42,6 +40,8 @@
       text="There was an error while fetching this season, please try reloading the page. If the problem
     persists, please contact support."
     />
+  {:else if season !== page.params.season}
+    <h1>Episode not found</h1>
   {:else}
     <h1>
       {season.toUpperCase()} / Episode: {episode?.name ?? 'Not found'}
