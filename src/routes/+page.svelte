@@ -5,6 +5,7 @@
   import CharactersListItem from '$lib/components/List/CharacterListItem.svelte';
   import EpisodeListItem from '$lib/components/List/EpisodeListItem.svelte';
   import type { FormErrors } from '$lib/components/Form/types.js';
+  import { searchValidationSchema } from '$lib/utils/validationSchema.js';
 
   const { form } = $props();
 
@@ -17,14 +18,7 @@
 <section>
   <Form
     action="?/search"
-    validationSchema={{
-      phrase: (value) => {
-        if (value.length < 3) {
-          return 'Enter at least 3 symbols';
-        }
-        return;
-      }
-    }}
+    validationSchema={searchValidationSchema}
     bind:errors
     bind:isValid
     bind:loading

@@ -24,7 +24,7 @@
       {/each}
     </div>
   {:else}
-    <h1>No data found</h1>
+    <h1>List is empty</h1>
   {/if}
 </section>
 

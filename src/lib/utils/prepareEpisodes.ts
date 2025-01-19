@@ -1,7 +1,7 @@
 import type { Episode, ResponseEpisode } from '$lib/types/Episode';
 
 export const getSeason = (episode: string) => {
-  const season = episode.toLowerCase().match(/^s0\d/g)?.[0];
+  const season = episode.toLowerCase().match(/^s\d{2}/g)?.[0];
   return season ?? 'unknown';
 };
 
