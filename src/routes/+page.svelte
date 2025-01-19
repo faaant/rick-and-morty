@@ -4,17 +4,31 @@
   import List from '$lib/components/List/index.svelte';
   import CharactersListItem from '$lib/components/List/CharacterListItem.svelte';
   import EpisodeListItem from '$lib/components/List/EpisodeListItem.svelte';
+  import type { FormErrors } from '$lib/components/Form/types.js';
 
   const { form } = $props();
 
   let loading = $state(false);
+  let isValid = $state(true);
+  let errors = $state<FormErrors>({});
   let phrase = $state('');
-
-  let isValid = $derived(phrase.length >= 3);
 </script>
 
 <section>
-  <Form action="?/search" {isValid} bind:loading>
+  <Form
+    action="?/search"
+    validationSchema={{
+      phrase: (value) => {
+        if (value.length < 3) {
+          return 'Enter at least 3 symbols';
+        }
+        return;
+      }
+    }}
+    bind:errors
+    bind:isValid
+    bind:loading
+  >
     <div class="search-with-button">
       <div>
         <input
@@ -26,12 +40,11 @@
           aria-describedby="invalid-helper"
           bind:value={phrase}
         />
-        {#if !isValid}
-          <small id="invalid-helper"> Enter at least 3 symbols </small>
+        {#if errors['phrase']}
+          <small id="invalid-helper"> {errors['phrase']} </small>
         {/if}
       </div>
-
-      <button type="submit" disabled={loading || !isValid}>Find</button>
+      <button type="submit" disabled={loading}>Find</button>
     </div>
   </Form>
 
