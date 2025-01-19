@@ -1,7 +1,6 @@
 import type { GetCharacterQuery } from '$lib/graphql/query/GetCharacter';
-import type { Episode } from './Episode';
 
-export type ResponseCharacter = Partial<GetCharacterQuery['character']>;
+export type ResponseCharacter = NonNullable<GetCharacterQuery['character']>;
 
 export interface Character {
   id: string;
@@ -10,7 +9,6 @@ export interface Character {
   status?: CharacterStatus;
   species?: string | null | undefined;
   gender?: string | null | undefined;
-  episode: Episode[];
 }
 
 export const characterStatus = {

@@ -1,9 +1,9 @@
 import type { Character, CharacterStatus, ResponseCharacter } from '$lib/types/Character';
-import { prepareEpisodes } from './prepareEpisodes';
 
-export const prepareCharacter = (character: ResponseCharacter): Character => {
+export const prepareCharacter = (
+  character: Omit<ResponseCharacter, 'episode'> | null
+): Character => {
   return {
-    episode: character?.episode ? prepareEpisodes(character.episode) : [],
     gender: character?.gender,
     id: character?.id ?? 'Not found',
     image: character?.image ?? 'Not found',
@@ -13,7 +13,9 @@ export const prepareCharacter = (character: ResponseCharacter): Character => {
   };
 };
 
-export const getUniqueCharacters = (characters: ResponseCharacter[]): Character[] => {
+export const getUniqueCharacters = (
+  characters: (Omit<ResponseCharacter, 'episode'> | null)[] = []
+): Character[] => {
   return Array.from(
     characters
       .reduce((acc, character) => {

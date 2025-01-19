@@ -1,6 +1,6 @@
 import type { GetEpisodeQuery } from '$lib/graphql/query/GetEpisode';
 
-export type ResponseEpisode = Partial<GetEpisodeQuery['episode']>;
+export type ResponseEpisode = NonNullable<GetEpisodeQuery['episode']>;
 
 export interface Episode {
   id: string;
