@@ -1,10 +1,11 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
+  import { page } from '$app/state';
 </script>
 
 <section>
   <div>
-    <h1>Ooops... Smth went wrong</h1>
+    <h1>Ooops... {page.status === 404 ? 'Not found' : 'Smth went wrong'}</h1>
     <h3>
       <button onclick={() => goto('/')}>Go back!</button>
     </h3>
