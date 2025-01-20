@@ -29,6 +29,6 @@ jobs:
       - name: Deploy Pages
         uses: cloudflare/wrangler-action@v3
         with:
-          command: pages deploy
+          command: pages deploy .svelte-kit/cloudflare --project-name rick-and-morty
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
