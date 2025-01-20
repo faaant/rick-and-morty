@@ -29,7 +29,6 @@
 </script>
 
 <section>
-  <h3>Season details:</h3>
   {#if $season.fetching}
     <div style:height="500px">
       <Loader />
@@ -40,6 +39,7 @@
     persists, please contact support."
     />
   {:else}
+    <h3>Season details:</h3>
     <List ItemComponent={EpisodeListItem} items={episodes} title="Episodes:" />
     <List
       ItemComponent={CharactersListItem}
