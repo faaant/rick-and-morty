@@ -6,8 +6,7 @@
     type GetSeasonQueryVariables,
     GetSeasonDocument
   } from '$lib/graphql/query/GetSeason';
-  import Loader from '$lib/components/Loader/index.svelte';
-  import ErrorAlert from '$lib/components/ErrorAlert/index.svelte';
+  import PageContent from '$lib/components/PageContent/index.svelte';
   import List from '$lib/components/List/index.svelte';
   import CharactersListItem from '$lib/components/List/CharacterListItem.svelte';
   import { getUniqueCharacters } from '$lib/utils/prepareCharacters';
@@ -29,16 +28,11 @@
 </script>
 
 <section>
-  {#if $season.fetching}
-    <div style:height="500px">
-      <Loader />
-    </div>
-  {:else if $season.error}
-    <ErrorAlert
-      text="There was an error while fetching this season, please try reloading the page. If the problem
-    persists, please contact support."
-    />
-  {:else}
+  <PageContent
+    loading={$season.fetching}
+    error={!!$season.error}
+    empty={!episodes.length && !characters.length}
+  >
     <h3>Season details:</h3>
     <List ItemComponent={EpisodeListItem} items={episodes} title="Episodes:" />
     <List
@@ -47,7 +41,7 @@
       title="Characters:"
       --justify-content="space-around"
     />
-  {/if}
+  </PageContent>
 </section>
 
 <style>

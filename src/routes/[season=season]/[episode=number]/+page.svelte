@@ -6,8 +6,7 @@
     type GetEpisodeQueryVariables,
     GetEpisodeDocument
   } from '$lib/graphql/query/GetEpisode';
-  import Loader from '$lib/components/Loader/index.svelte';
-  import ErrorAlert from '$lib/components/ErrorAlert/index.svelte';
+  import PageContent from '$lib/components/PageContent/index.svelte';
   import List from '$lib/components/List/index.svelte';
   import CharactersListItem from '$lib/components/List/CharacterListItem.svelte';
   import { prepareCharacter } from '$lib/utils/prepareCharacters';
@@ -31,18 +30,11 @@
 </script>
 
 <section>
-  {#if $episodeResponse.fetching}
-    <div style:height="500px">
-      <Loader />
-    </div>
-  {:else if $episodeResponse.error}
-    <ErrorAlert
-      text="There was an error while fetching this season, please try reloading the page. If the problem
-    persists, please contact support."
-    />
-  {:else if season !== page.params.season}
-    <h1>Episode not found</h1>
-  {:else}
+  <PageContent
+    loading={$episodeResponse.fetching}
+    error={!!$episodeResponse.error}
+    empty={season !== page.params.season}
+  >
     <h1>
       {season.toUpperCase()} / Episode: {episode?.name ?? 'Not found'}
     </h1>
@@ -52,7 +44,7 @@
       title="Characters that appears in this episode:"
       --justify-content="space-around"
     />
-  {/if}
+  </PageContent>
 </section>
 
 <style>
