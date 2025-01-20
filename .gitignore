@@ -2,6 +2,7 @@ node_modules
 
 # IDE
 .vscode
+.tool-versions
 
 # Output
 .output
