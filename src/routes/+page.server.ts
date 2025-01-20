@@ -6,13 +6,22 @@ import { fail, type Actions } from '@sveltejs/kit';
 import { env } from '$env/dynamic/private';
 import { isKvStore } from '$lib/utils/isKvStore';
 import type { KvStore } from '$lib/types/KvStore';
+import { RateLimiter } from '$lib/rate-limiter/RateLimiter';
 
 const cfKvStore = env.KV_STORE;
 const kvStore: KvStore | undefined = isKvStore(cfKvStore) ? cfKvStore : undefined;
+const rateLimiter = new RateLimiter({ interval: 60000, limit: 10 });
 
 export const actions = {
   search: async (event) => {
-    const formData = await event.request.formData();
+    const request = event.request;
+    const clientIp = event.getClientAddress();
+
+    if (rateLimiter.shouldLimit(clientIp)) {
+      return fail(429, { message: 'Too many requests! Please wait a minute and then try again' });
+    }
+
+    const formData = await request.formData();
 
     const phrase = formData.get('phrase');
     if (typeof phrase !== 'string' || phrase.length < 3) {
@@ -24,7 +33,7 @@ export const actions = {
       try {
         return JSON.parse(cachedValue);
       } catch {
-        console.error(`Can't parse cached value for key "${phrase}"`);
+        console.error(`Can't parse cached value for key "${phrase}."`);
       }
     }
 
@@ -43,7 +52,7 @@ export const actions = {
     }
 
     const responseData = { characters, episodes };
-    await kvStore?.put(phrase, JSON.stringify(responseData), { expirationTtl: 60 });
+    await kvStore?.put(phrase, JSON.stringify(responseData), { expirationTtl: 300 });
 
     return responseData;
   }
