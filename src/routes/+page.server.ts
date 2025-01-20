@@ -22,7 +22,6 @@ export const actions = {
     }
 
     const formData = await request.formData();
-
     const phrase = formData.get('phrase');
     if (typeof phrase !== 'string' || phrase.length < 3) {
       return fail(400, { message: 'Search phrase should has at least 3 symbols' });
