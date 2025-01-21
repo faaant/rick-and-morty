@@ -10,19 +10,12 @@
   const { form } = $props();
 
   let loading = $state(false);
-  let isValid = $state(true);
   let errors = $state<FormErrors>({});
   let phrase = $state('');
 </script>
 
 <section>
-  <Form
-    action="?/search"
-    validationSchema={searchValidationSchema}
-    bind:errors
-    bind:isValid
-    bind:loading
-  >
+  <Form action="?/search" validationSchema={searchValidationSchema} bind:errors bind:loading>
     <div class="search-with-button">
       <div>
         <input
@@ -30,7 +23,7 @@
           name="phrase"
           placeholder="Search episodes and characters"
           aria-label="Search"
-          aria-invalid={!isValid}
+          aria-invalid={!!errors['phrase']}
           aria-describedby="invalid-helper"
           bind:value={phrase}
         />

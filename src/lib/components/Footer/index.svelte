@@ -1,4 +1,4 @@
-<footer style:text-align="center" style:padding="20px" class="container">
+<footer>
   Created by <a class="contrast" href="https://github.com/faaant" target="_blank">faaant</a>
 </footer>
 
@@ -8,6 +8,7 @@
     background-color: var(--pico-color-slate-700);
     color: var(--pico-color-grey-50);
     padding: 1rem;
+    text-align: center;
   }
 
   footer a {
