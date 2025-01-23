@@ -1,0 +1,16 @@
+query Search($name: String!) {
+  characters(filter: { name: $name }) {
+    results {
+      id
+      name
+      image
+    }
+  }
+  episodes(filter: { name: $name }) {
+    results {
+      id
+      name
+      episode
+    }
+  }
+}

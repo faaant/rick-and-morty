@@ -1,0 +1,14 @@
+query GetSeason($season: String!) {
+  episodes(filter: { episode: $season }) {
+    results {
+      id
+      name
+      episode
+      characters {
+        id
+        name
+        image
+      }
+    }
+  }
+}
