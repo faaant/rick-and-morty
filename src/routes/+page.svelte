@@ -43,12 +43,7 @@
     {/if}
 
     {#if form?.characters}
-      <List
-        ItemComponent={CharactersListItem}
-        items={form.characters}
-        title="Characters:"
-        --justify-content="space-around"
-      />
+      <List ItemComponent={CharactersListItem} items={form.characters} title="Characters:" />
     {/if}
 
     {#if form?.message}
@@ -59,6 +54,8 @@
 
 <style>
   section {
+    --justify-content: space-around;
+
     padding: 2rem;
   }
 

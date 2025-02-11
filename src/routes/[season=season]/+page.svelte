@@ -9,16 +9,13 @@
 <section>
   <h3>Season details:</h3>
   <List ItemComponent={EpisodeListItem} items={data.episodes} title="Episodes:" />
-  <List
-    ItemComponent={CharactersListItem}
-    items={data.characters}
-    title="Characters:"
-    --justify-content="space-around"
-  />
+  <List ItemComponent={CharactersListItem} items={data.characters} title="Characters:" />
 </section>
 
 <style>
   section {
+    --justify-content: space-around;
+
     padding: 2rem;
   }
 

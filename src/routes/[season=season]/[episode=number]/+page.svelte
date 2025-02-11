@@ -13,12 +13,13 @@
     ItemComponent={CharactersListItem}
     items={data.characters}
     title="Characters that appears in this episode:"
-    --justify-content="space-around"
   />
 </section>
 
 <style>
   section {
+    --justify-content: space-around;
+
     padding: 2rem;
     height: 100%;
   }
