@@ -24,6 +24,8 @@ jobs:
           key: modules-${{ hashFiles('package-lock.json') }}
 
       - name: Build application
+        env:
+          PUBLIC_API_URL: ${{ vars.PUBLIC_API_URL }}
         run: npm run build
 
       - name: Deploy Pages
